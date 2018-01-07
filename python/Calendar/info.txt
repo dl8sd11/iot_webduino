@@ -1,2 +1,0 @@
-check out the quickstart:
-https://developers.google.com/google-apps/calendar/quickstart/python?hl=zh-TW
