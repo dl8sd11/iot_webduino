@@ -19,7 +19,6 @@
 </head>
 <body>
   <p>Connection Status:<b id="serverStatus">offline</b></p><br>
-  <button id="toggleWardrobe">Wardrobe</button><br>
   <div id="wardrobe">
     <p>今天氣溫: <div id="wardrobeTemp"></div></p><br>
     <p>今天行程: </p><br>
@@ -45,6 +44,7 @@
     $.get(api_route+"Calendar").done(function(data){
       events = data.events;
       let calendar = document.getElementById("calendar");
+      calendar.innerHTML="";
       for (var i=0,len=events.length;i<len;i++) {
         let nowEvent = events[i];
         let tmpLi = document.createElement("li");
@@ -83,7 +83,10 @@
     rgbled.setColor('#ff00ff');
     photocell.on(function(val){
       photocell.detectedVal = val;
-      if (val>0.5) $("#wardrobe").show();
+      if (val>0.5) {
+        wardrobeCalendar();
+        $("#wardrobe").show();
+      }
       else $("#wardrobe").hide();
     });
   });
