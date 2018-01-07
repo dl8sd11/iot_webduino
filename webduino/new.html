@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Webduino Blockly App</title>
+  <script
+        src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+        crossorigin="anonymous"></script>
+  </script>
+  <script src="https://blockly.webduino.io/components/webduino-js/dist/webduino-all.min.js"></script>
+  <script src="https://blockly.webduino.io/lib/webduino-blockly.js"></script>
+  <script src="https://blockly.webduino.io/lib/firebase.js"></script>
+  <script src="https://blockly.webduino.io/lib/runtime.min.js"></script>
+</head>
+
+<body>
+  <div></div>
+  <script>
+    var photocell;
+    var rgbled;
+    var l;
+    boardReady({board: 'Smart', device: '10Q84jXQ', transport: 'mqtt'}, function (board) {
+      board.systemReset();
+      board.samplingInterval = 50;
+      photocell = getPhotocell(board, 0);
+      rgbled = getRGBLedCathode(board, 15, 12, 13);
+      l = photocell.detectedVal;
+    });
+  </script>
+</body>

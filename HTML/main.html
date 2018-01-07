@@ -1,0 +1,74 @@
+<html>
+<head>
+  <meta charset = "utf-8">
+  <title>main</title>
+  <script
+        src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+        crossorigin="anonymous"></script>
+  </script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <style>
+    p,div{display:inline;}
+
+  </style>
+</head>
+<body>
+  <p>Connection Status:<b id="serverStatus">offline</b></p><br>
+  <button id="toggleWardrobe">Wardrobe</button><br>
+  <div id="wardrobe">
+    <p>今天氣溫: <div id="wardrobeTemp"></div></p><br>
+    <p>今天行程: </p><br>
+    <ol id="calendar">
+    </ol>
+  </div>
+<script>
+  var api_route = "http://127.0.0.1:5000/IOT/api/v1.0/"
+  var serverStatus_b = document.getElementById("serverStatus");
+  var connection = false;
+  function checkConnection(){
+    $.get(api_route+"status",function(){
+      //onsole.log("requesting for server status...");
+    }).done(function(data){
+      serverStatus_b.innerHTML = data.status;
+      connection = true;
+    }).fail(function(){
+      serverStatus_b.innerHTML = "disconnected";
+      connection = false;
+    });
+  }
+  function wardrobeCalendar(){
+    $.get(api_route+"Calendar").done(function(data){
+      events = data.events;
+      let calendar = document.getElementById("calendar");
+      for (var i=0,len=events.length;i<len;i++) {
+        let nowEvent = events[i];
+        let tmpLi = document.createElement("li");
+        tmpLi.innerHTML = nowEvent.summary;
+        calendar.append(tmpLi);
+      }
+    }).fail(function(){
+      console.log("fail");
+    });
+  }
+  function getTemperature(callback){
+    $.get(api_route+"Temperature").done(function(data){
+      callback(data.temperature);
+    }).fail(function(){
+      callback("failed");
+    });
+  }
+  $("#toggleWardrobe").click(function(){
+    $("#wardrobe").toggle();
+  })
+  $(document).ready(function (){
+    checkConnection();
+    getTemperature(function(data){
+      $("#wardrobeTemp").html(data);
+    });
+    wardrobeCalendar();
+  });
+  setInterval(checkConnection,5000);
+</script>
+</body>
+</html>

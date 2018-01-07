@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Webduino Blockly App</title>
+  <script
+        src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+        crossorigin="anonymous"></script>
+  </script>
+  <script src="https://blockly.webduino.io/components/webduino-js/dist/webduino-all.min.js"></script>
+  <script src="https://blockly.webduino.io/lib/webduino-blockly.js"></script>
+  <script src="https://blockly.webduino.io/lib/firebase.js"></script>
+  <script src="https://blockly.webduino.io/lib/runtime.min.js"></script>
+</head>
+
+<body>
+  <div><span id="demo-area-01-show">123</span></div>
+  <script>
+  var rgbled;
+  var photocell;
+  boardReady({board: 'Smart', device: ' 10Q84jXQ', transport: 'mqtt'}, function (board) {
+    board.systemReset();
+    board.samplingInterval = 50;
+    console.log("connected");
+    photocell = getPhotocell(board, 0);
+    rgbled = getRGBLedCathode(board, 15, 12, 13);
+    button = getButton(board, 4);
+    button.on("pressed", function(){
+      console.log("pressed");
+        rgbled.setColor('#ff0000');
+
+    });
+    photocell.on(function(val){
+      photocell.detectedVal = val;
+      //console.log(val);
+      $('#demo-area-01-show').html(val);
+      if (val<1) {
+        rgbled.setColor('#ffffff');
+        //console.log("lighton");
+      }
+      else rgbled.setColor('#000000');
+    });
+
+
+  });
+
+  </script>
+</body>
