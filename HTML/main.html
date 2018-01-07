@@ -7,6 +7,10 @@
         integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
         crossorigin="anonymous"></script>
   </script>
+  <script src="https://blockly.webduino.io/components/webduino-js/dist/webduino-all.min.js"></script>
+  <script src="https://blockly.webduino.io/lib/webduino-blockly.js"></script>
+  <script src="https://blockly.webduino.io/lib/firebase.js"></script>
+  <script src="https://blockly.webduino.io/lib/runtime.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
   <style>
     p,div{display:inline;}
@@ -67,6 +71,21 @@
       $("#wardrobeTemp").html(data);
     });
     wardrobeCalendar();
+  });
+
+  var photocell;
+  var rgbled;
+  boardReady({board: 'Smart', device: '10Q84jXQ', transport: 'mqtt'}, function (board) {
+    board.systemReset();
+    board.samplingInterval = 50;
+    photocell = getPhotocell(board, 0);
+    rgbled = getRGBLedCathode(board, 15, 12, 13);
+    rgbled.setColor('#ff00ff');
+    photocell.on(function(val){
+      photocell.detectedVal = val;
+      if (val>0.5) $("#wardrobe").show();
+      else $("#wardrobe").hide();
+    });
   });
   setInterval(checkConnection,5000);
 </script>
