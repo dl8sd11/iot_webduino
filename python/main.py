@@ -1,8 +1,8 @@
-from flask import Flask, jsonify, abort, make_response
+from flask import Flask, jsonify, abort, make_response,request, send_from_directory
 from Calendar import getCalendar
 from Temperature import getTemperature
 from flask_cors import CORS
-app = Flask(__name__)
+app = Flask(__name__ , static_url_path='/src')
 CORS(app)
 
 @app.route('/IOT/api/v1.0/Calendar', methods=['GET'])

@@ -1,0 +1,31 @@
+<html>
+<head>
+  <meta charset = "utf-8">
+  <title>main</title>
+  <script
+        src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+        crossorigin="anonymous"></script>
+  </script>
+  <script src="https://blockly.webduino.io/components/webduino-js/dist/webduino-all.min.js"></script>
+  <script src="https://blockly.webduino.io/lib/webduino-blockly.js"></script>
+  <script src="https://blockly.webduino.io/lib/firebase.js"></script>
+  <script src="https://blockly.webduino.io/lib/runtime.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <style>
+    p,div{display:inline;}
+
+  </style>
+</head>
+<body>
+  <p>Connection Status:<b id="serverStatus">offline</b></p><br>
+  <div id="wardrobe">
+    <p>今天氣溫: <div id="wardrobeTemp"></div></p><br>
+    <p>今天行程: </p><br>
+    <ol id="calendar">
+    </ol>
+  </div>
+<script src="./js/API.js"></script>
+<script src="./js/wardrobe.js"></script>
+</body>
+</html>

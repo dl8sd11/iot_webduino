@@ -17,31 +17,29 @@
 </head>
 
 <body>
-  <div><span id="demo-area-01-show">123</span></div>
+  <h3>TouchSensor:<h3 id="ButtonStat"></h3></h3>
+  <h3>LightSensor:<h3 id="LightStat"></h3></h3>
   <script>
+  var ID = '10Q84jXQ';
+  var LightPort = 0;
+  var ButtonPort = 4;
   var rgbled;
   var photocell;
-  boardReady({board: 'Smart', device: ' 10Q84jXQ', transport: 'mqtt'}, function (board) {
+  boardReady({board: 'Smart', device: ID, transport: 'mqtt'}, function (board) {
     board.systemReset();
     board.samplingInterval = 50;
     console.log("connected");
-    photocell = getPhotocell(board, 0);
+    photocell = getPhotocell(board, LightPort);
     rgbled = getRGBLedCathode(board, 15, 12, 13);
-    button = getButton(board, 4);
+    button = getButton(board, TouchPort);
     button.on("pressed", function(){
-      console.log("pressed");
-        rgbled.setColor('#ff0000');
-
+      console.log("Pressed");
+      ('#ButtonStat').html("True");
+      setInterval(function(){('#touchStat').html("");},500);
     });
     photocell.on(function(val){
       photocell.detectedVal = val;
-      //console.log(val);
-      $('#demo-area-01-show').html(val);
-      if (val<1) {
-        rgbled.setColor('#ffffff');
-        //console.log("lighton");
-      }
-      else rgbled.setColor('#000000');
+      $('#LightStat').html(val);
     });
 
 
