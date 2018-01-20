@@ -1,4 +1,3 @@
-console.log("wardrobe.js");
 function makeWardrobe(callback) {
   getTemperature(function(data){
     $("#wardrobeTemp").html(data);
@@ -26,7 +25,7 @@ boardReady({board: 'Smart', device: '10Q84jXQ', transport: 'mqtt'}, function (bo
   console.log("wardrobe connected");
   photocell = getPhotocell(board, 0);
   rgbled = getRGBLedCathode(board, 15, 12, 13);
-  rgbled.setColor('#ffffff');
+  rgbled.setColor('#ff0000');
   photocell.on(function(val){
     photocell.detectedVal = val;
     if (val>0.5) {
