@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, abort, make_response,request, send_from_directory
 from Calendar import getCalendar
+from Traffic import updateTraffic
 from Temperature import getTemperature
 from flask_cors import CORS
 app = Flask(__name__ , static_url_path='/src')
@@ -14,7 +15,10 @@ def get_status():
 @app.route('/IOT/api/v1.0/Temperature', methods=['GET'])
 def get_Temperature():
     return jsonify({'temperature': getTemperature()})
-
+@app.route('/IOT/api/v1.0/Traffic',methods=['GET'])
+def update_traffix():
+    updateTraffic()
+    return "Yes Sir"
 @app.errorhandler(404)
 def not_found(error):
     return make_response(jsonify({'error':'Not found'}),404)
