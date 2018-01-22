@@ -1,3 +1,4 @@
+console.log("loaded wardrobe.js");
 function makeWardrobe(callback) {
   getTemperature(function(data){
     $("#wardrobeTemp").html(data);
@@ -19,7 +20,8 @@ function makeWardrobe(callback) {
 var photocell;
 var rgbled;
 var wardrobeDoor = 0;
-boardReady({board: 'Smart', device: '10Q84jXQ', transport: 'mqtt'}, function (board) {
+var wardrobeID = "10Q84jXQ";
+boardReady({board: 'Smart', device: wardrobeID, transport: 'mqtt'}, function (board) {
   board.systemReset();
   board.samplingInterval = 50;
   console.log("wardrobe connected");

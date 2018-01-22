@@ -1,0 +1,2 @@
+$('#wardrobe').hide();
+$('#garage').hide();
