@@ -23,6 +23,13 @@ function getCalendar(callback){
     callback("fail")
   });
 }
+function getRecipe(callback){
+  $.get(api_route+"Recipe").done(function(data){
+    callback(data.recipe);
+  }).fail(function(){
+    callback("fail");
+  });
+}
 function getTemperature(callback){
   $.get(api_route+"Temperature").done(function(data){
     callback(data.temperature);
