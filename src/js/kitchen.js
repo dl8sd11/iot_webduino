@@ -1,4 +1,4 @@
-var garageID = '10Q84jXQ';
+var kitchenID = '10yegA8Q';
 var ButtonPort = 4;
 function makeRecipe(){
   getRecipe(function(data){
@@ -14,7 +14,7 @@ function makeRecipe(){
     }
   });
 }
-boardReady({board: 'Smart', device: garageID, transport: 'mqtt'}, function (board) {
+boardReady({board: 'Smart', device: kitchenID, transport: 'mqtt'}, function (board) {
   board.systemReset();
   board.samplingInterval = 50;
   console.log("garage connected");
