@@ -17,7 +17,7 @@ function makeRecipe(){
 boardReady({board: 'Smart', device: kitchenID, transport: 'mqtt'}, function (board) {
   board.systemReset();
   board.samplingInterval = 50;
-  console.log("garage connected");
+  console.log("kitchen connected");
   button = getButton(board, ButtonPort);
   button.on("released", function(){
     console.log("Pressed");
