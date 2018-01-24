@@ -3,6 +3,7 @@ from Calendar import getCalendar
 from Traffic import updateTraffic
 from Kitchen import getRecipe
 from Temperature import getTemperature
+from Outdoor import getOutdoorInfo
 from flask_cors import CORS
 app = Flask(__name__ , static_url_path='/src')
 CORS(app)
@@ -16,6 +17,9 @@ def get_status():
 @app.route('/IOT/api/v1.0/Temperature', methods=['GET'])
 def get_Temperature():
     return jsonify({'temperature': getTemperature()})
+@app.route('/IOT/api/v1.0/Outdoor', methods=['GET'])
+def get_Outdoor():
+    return jsonify(getOutdoorInfo())
 @app.route('/IOT/api/v1.0/Traffic',methods=['GET'])
 def update_traffix():
     updateTraffic()

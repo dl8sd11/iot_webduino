@@ -37,3 +37,10 @@ function getTemperature(callback){
     callback("failed");
   });
 }
+function getOutdoorInfo(callback){
+  $.get(api_route+"Outdoor").done(function(data){
+    callback(data);
+  }).fail(function(){
+    callback("failed");
+  });
+}
