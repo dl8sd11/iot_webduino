@@ -31,7 +31,7 @@
     console.log("connected");
     photocell = getPhotocell(board, LightPort);
     rgbled = getRGBLedCathode(board, 15, 12, 13);
-    button = getButton(board, TouchPort);
+    button = getButton(board, ButtonPort);
     button.on("pressed", function(){
       console.log("Pressed");
       ('#ButtonStat').html("True");
