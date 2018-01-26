@@ -20,7 +20,7 @@
   <h3>TouchSensor:<h3 id="ButtonStat"></h3></h3>
   <h3>LightSensor:<h3 id="LightStat"></h3></h3>
   <script>
-  var ID = '10Q84jXQ';
+  var ID = '10yegA8Q';
   var LightPort = 0;
   var ButtonPort = 4;
   var rgbled;
@@ -32,10 +32,12 @@
     photocell = getPhotocell(board, LightPort);
     rgbled = getRGBLedCathode(board, 15, 12, 13);
     button = getButton(board, ButtonPort);
-    button.on("pressed", function(){
+    button.on("released", function(){
       console.log("Pressed");
-      ('#ButtonStat').html("True");
-      setInterval(function(){('#touchStat').html("");},500);
+      $('#ButtonStat').html("True");
+    });
+    button.on("pressed",function(){
+      $('#ButtonStat').html("False");
     });
     photocell.on(function(val){
       photocell.detectedVal = val;
