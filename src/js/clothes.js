@@ -1,5 +1,6 @@
 var collectStatus = 0;
 var collectTime = 5000;
+var collectID = '10dKR78Q';
 onoffMotor(cmd){
   var motorOnOff = getLed(board, 12);
   if (cmd=='on') {
@@ -17,7 +18,7 @@ setMotorDir(cmd,callback){
   }
   callback();
 }
-boardReady({board: 'Smart', device: '10Q84jXQ', transport: 'mqtt'}, function (board) {
+boardReady({board: 'Smart', device: 'collectID', transport: 'mqtt'}, function (board) {
   board.samplingInterval = 50;
   var led;
   led = getLed(board, 12);

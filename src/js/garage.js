@@ -6,11 +6,11 @@ boardReady({board: 'Smart', device: garageID, transport: 'mqtt'}, function (boar
   board.samplingInterval = 50;
   console.log("garage connected");
   button = getButton(board, ButtonPort);
-  button.on("released", function(){
+  button.on("pressed", function(){
     console.log("Pressed");
     $('#garage').show();
   });
-  button.on("pressed",function(){
+  button.on("released",function(){
     $('#garage').hide();
     console.log("released");
   });
