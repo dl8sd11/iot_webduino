@@ -12,5 +12,4 @@ def getRecipe():
     res2.endcoding = 'utf-8'
     recipe = BeautifulSoup(res2.text,'html.parser')
     recipe = recipe.find_all('div','tip-recipe-item')
-    print(recipe)
     return recipe
