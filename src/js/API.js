@@ -1,4 +1,4 @@
-var api_route = "http://10.42.0.1:5000/IOT/api/v1.0/"
+var api_route = "http://172.20.10.7:5000/IOT/api/v1.0/"
 var serverStatus_b = document.getElementById("serverStatus");
 var connection = false;
 function checkConnection(){

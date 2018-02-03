@@ -11,3 +11,8 @@ p,div{display:inline;}
   font-size: 72px;
   margin-left: 40px;
 }
+.full-width {
+  width: 100%;
+  hight: auto;
+  max-width: 100%;
+}
