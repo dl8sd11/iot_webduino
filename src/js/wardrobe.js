@@ -1,7 +1,7 @@
 console.log("loaded wardrobe.js");
 function makeWardrobe(callback) {
   getTemperature(function(data){
-    $("#wardrobeTemp").html(data);
+    $("#wardrobeTemp").html(data+"(°C)");
   });
   getCalendar(function(data){
     if (data=='fail') return;

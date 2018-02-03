@@ -8,6 +8,8 @@ from flask_cors import CORS
 app = Flask(__name__ , static_url_path='/src')
 CORS(app)
 
+clotheshorse = 2;
+
 @app.route('/IOT/api/v1.0/Calendar', methods=['GET'])
 def get_Calendar():
     return jsonify({'events': getCalendar()})
@@ -24,6 +26,9 @@ def get_Outdoor():
 def update_traffix():
     updateTraffic()
     return "Yes Sir"
+@app.route('/IOT/api/v1.0/getCollectClothes',methods=['GET'])
+def get_Collect_Clothes():
+    return jsonify(clotheshorse);
 @app.route('/IOT/api/v1.0/Recipe')
 def get_Recipe():
     return jsonify({'recipe':getRecipe()});
@@ -32,4 +37,5 @@ def not_found(error):
     return make_response(jsonify({'error':'Not found'}),404)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,host='0.0.0.0')
+    #DIdkiZS7

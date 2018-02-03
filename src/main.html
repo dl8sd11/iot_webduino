@@ -14,47 +14,80 @@
   <script src="./js/runtime.js"></script>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-  <style>
-    p,div{display:inline;}
-
-  </style>
+  <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
   <p>Connection Status:<b id="serverStatus">offline</b></p><br>
-  <div id="wardrobe">
-    <p>今天氣溫: <div id="wardrobeTemp"></div></p><br>
-    <p>今天行程: </p><br>
-    <ol id="calendar">
-    </ol>
+  <div class="container"  id="wardrobe">
+    <div class="row">
+      <div class="col-sm-4 offset-sm-1 title">
+        智慧衣櫃
+      </div>
+    </div>
+    <div class="row" style="margin-top:50px;">
+      <div class="col-sm">
+        <div class="f-30">今天氣溫:</div><br>
+        <div id="wardrobeTemp" class="f-72"></div>
+      </div><br>
+      <div class="col-sm">
+        <div class="f-30">今天行程: </div><br>
+        <ol id="calendar" class="f-72">
+        </ol>
+      </div>
+    </div>
   </div>
   <div id="garage">
-    <img src="./pic/traffic.jpg">
-  </div>
-  <div id="kitchen">
-    <iframe src='https://shopping.friday.tw/event/freshShopping_facility/' height="640" width="1000"></iframe><br>
-    <div id="dishes">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4 offset-sm-1 title">
+          即時路況
+        </div>
+      </div>
+      <div class="row">
+        <img src="./pic/traffic.jpg" style="margin-left:25px">
+      </div>
     </div>
-    <div id="recipe">
-      <b id="dishName"></b>
-      <p id="serves"></p><br>
-      <b>You will need:</b>
-      <ul id="recipeIngredients">
-      </ul>
-      <b>Instructions:</b>
-      <ol id="recipeSteps">
-      </ol>
+
+  </div>
+  <div id="kitchen" class="container">
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="f-30">優惠資訊:</div><br>
+        <iframe id="sale" src='https://shopping.friday.tw/event/freshShopping_facility/' height="600" width="100%" onload="this.contentWindow.document.documentElement.scrollTop=100"></iframe>
+      </div>
+      <div class="col-sm-4">
+        <div class="f-30">隨機食譜:</div><br>
+        <a href="http://www.carrefour.com.tw/recipes/c4masterchef-2st-top5/">Go</a>
+      </div>
+    </div>
+
+
+  </div>
+  <div class="container"  id="outdoor">
+    <div class="row">
+      <div class="col-sm-4 offset-sm-1 title">
+        外出資訊
+      </div>
+    </div>
+    <div class="row" style="margin-top:50px;">
+      <div class="col-sm">
+        <div class="f-30">pm2.5濃度:</div><br>
+        <div id="pmStat" class="f-72" style="margin-top:50px"></div><br>
+        <div id="pmLevel" class="f-30" style="margin-left:30px"></div>
+      </div><br>
+      <div class="col-sm">
+        <div class="f-30">降雨機率: </div><br>
+        <div id="rainStat" class="f-72"></div>
+      </div>
     </div>
   </div>
-  <div id="outdoor">
-    <p id="pmStat"></p><br>
-    <p id="pmLevel"></p><br>
-    <p id="rainStat"></p>
-  </div>
+
 <script src="./js/init.js"></script>
 <script src="./js/API.js"></script>
 <script src="./js/wardrobe.js"></script>
 <script src="./js/garage.js"></script>
 <script src="./js/kitchen.js"></script>
+<script src="./js/clothes.js"></script>
 <script src="./js/outdoor.js"></script>
 </body>
 </html>

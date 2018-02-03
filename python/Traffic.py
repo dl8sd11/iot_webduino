@@ -14,4 +14,5 @@ def updateTraffic():
     pic.save("../pic/traffic.jpg")
     web.close()
     return
-updateTraffic();
+if __name__ == "__main__":
+    updateTraffic();

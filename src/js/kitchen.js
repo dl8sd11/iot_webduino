@@ -1,5 +1,6 @@
 var kitchenID = '10yegA8Q';
 var ButtonPort = 4;
+
 function makeRecipe(){
   getRecipe(function(data){
     for(i=0;i<data.length;i++) {
@@ -23,12 +24,12 @@ boardReady({board: 'Smart', device: kitchenID, transport: 'mqtt'}, function (boa
   console.log("kitchen connected");
   button = getButton(board, ButtonPort);
   button.on("released", function(){
-    console.log("Pressed");
+    //console.log("Pressed");
     $('#kitchen').show();
     makeRecipe();
   });
   button.on("pressed",function(){
     $('#kitchen').hide();
-    console.log("released");
+    //console.log("released");
   });
 });

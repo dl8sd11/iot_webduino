@@ -1,0 +1,49 @@
+<html>
+<head>
+  <meta charset = "utf-8">
+  <title>motor test</title>
+  <script src="./js/jquery.js"></script>
+  <script src="./js/webduino.js"></script>
+  <script src="./js/blocky.js"></script>
+  <script src="./js/runtime.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <style>
+    p,div{display:inline;}
+
+  </style>
+</head>
+<body>
+
+<script>
+stat = 0;
+var data=0;
+boardReady({board: 'Smart', device: '10dKR78Q', transport: 'mqtt'}, function (board) {
+  console.log("clotheshorse connected");
+  board.samplingInterval = 50;
+  INA = getPin(board, 13);
+  INB = getPin(board, 12);
+  INA.setMode(1);
+  INB.setMode(1);
+
+  setInterval(async function () {
+    if (data=='1'&&stat=='0') {
+      INA.write(1);
+      INB.write(0);
+      await delay(6);
+      INA.write(0);
+      INB.write(0);
+      stat = 1;
+    } else if (data=='0'&&stat=='1') {
+      INA.write(0);
+      INB.write(1);
+      await delay(6);
+      INA.write(0);
+      INB.write(0);
+      stat = '0'
+    }
+
+  }, 1000 * 10);
+});
+</script>
+</body>
+</html>
