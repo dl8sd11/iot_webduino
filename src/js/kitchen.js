@@ -3,19 +3,8 @@ var ButtonPort = 4;
 
 function makeRecipe(){
   getRecipe(function(data){
-    for(i=0;i<data.length;i++) {
-      $('#dishes').append(data[i]);
-    }
-    // $('#dishName').html(data[0]);
-    // $('#serves').html(data[1]);
-    // let i;
-    // for(i=3;i<data.length;i++) {
-    //   if (data[i]=="Instructions:") break;
-    //   $('#recipeIngredients').append("<li>"+data[i]+"</li>");
-    // }
-    // for(;i<data.length;i++){
-    //   $('#recipeSteps').append("<li>"+data[i]+"</li>");
-    // }
+    $('#arecipe').attr("href",data);
+    console.log("recipe updated");
   });
 }
 boardReady({board: 'Smart', device: kitchenID, transport: 'mqtt'}, function (board) {
@@ -33,3 +22,4 @@ boardReady({board: 'Smart', device: kitchenID, transport: 'mqtt'}, function (boa
     //console.log("released");
   });
 });
+makeRecipe();

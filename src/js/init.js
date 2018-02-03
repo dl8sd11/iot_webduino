@@ -1,4 +1,4 @@
 $('#wardrobe').hide();
 $('#garage').hide();
-$('#kitchen').hide();
-//$('#outdoor').hide();
+// $('#kitchen').hide();
+$('#outdoor').hide();
