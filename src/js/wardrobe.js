@@ -30,12 +30,11 @@ boardReady({board: 'Smart', device: wardrobeID, transport: 'mqtt'}, function (bo
   rgbled.setColor('#ff0000');
   photocell.on(function(val){
     photocell.detectedVal = val;
+    // console.log(val);
     if (val>0.05) {
       if (wardrobeDoor == 0) {
         wardrobeDoor = 1;
-        makeWardrobe(function(){
-          $("#wardrobe").show();
-        });
+        $("#wardrobe").show();
       }
 
     }
@@ -46,3 +45,4 @@ boardReady({board: 'Smart', device: wardrobeID, transport: 'mqtt'}, function (bo
     }
   });
 });
+makeWardrobe(function(){});

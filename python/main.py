@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, abort, make_response,request, send_from_directory
 from Calendar import getCalendar
 from Traffic import updateTraffic
+from Clothes import collectClothes
 from Kitchen import getRecipe
 from Temperature import getTemperature
 from Outdoor import getOutdoorInfo
@@ -26,6 +27,9 @@ def get_Outdoor():
 def update_traffix():
     updateTraffic()
     return "Yes Sir"
+@app.route('/IOT/api/v1.0/Clothes',methods=['GET'])
+def get_clothes():
+    return jsonify(collectClothes());
 @app.route('/IOT/api/v1.0/getCollectClothes',methods=['GET'])
 def get_Collect_Clothes():
     return jsonify(clotheshorse);
